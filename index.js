@@ -4,8 +4,8 @@ let i = 1;
 let sum = 0;
 
 while (i <= 10) {
-  i++;
   sum = sum + i;
+  i++;
 }
 console.log("Sumata na site broevi od 1 do 10 e " + sum);
 

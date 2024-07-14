@@ -1,15 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    ECMAScript = JavaScript 
-    
-</body>
-<script src="index.js">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cars-website</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous">
+    </head>
+    <body>
 
-</script>
+        <div class="container">
+
+            <h1 class="text-center m-3">Cars site</h1>
+          
+            <div class="d-flex justify-content-end mt-3 gap-3">
+             
+                <button type="button" class="btn btn-info"
+                    data-bs-toggle="modal" id="registerBtn"
+                    data-bs-target="#registerModal">
+                    Register
+                </button>
+
+              
+                <button type="button" class="btn btn-success"
+                    data-bs-toggle="modal" id="loginBtn"
+                    data-bs-target="#loginModal">
+                    Login
+                </button>
+            </div>
+
+           
+            <div class="modal fade" id="registerModal" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5"
+                                id="exampleModalLabel">Register</h1>
+                            <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="exampleName"
+                                        class="form-label">Name</label>
+                                    <input type="text" class="form-control"
+                                        id="exampleName">
+                                </div>
+                                <p id="errorName"></p>
+                                <div class="mb-3">
+                                    <label for="exampleLastName"
+                                        class="form-label">Last
+                                        Name</label>
+                                    <input type="text" class="form-control"
+                                        id="exampleLastName">
+                                </div>
+                                <p id="errorLastName"></p>
+                                <div class="mb-3">
+                                    <label for="examplePhoneNumber"
+                                        class="form-label">Phone
+                                        Number</label>
+                                    <input type="text" class="form-control"
+                                        id="examplePhoneNumber" placeholder="+3897xxxxxxx">
+                                </div>
+                                <p id="errorPhoneNumber"></p>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1"
+                                        class="form-label">Email
+                                        address</label>
+                                    <input type="text" class="form-control"
+                                        id="exampleInputEmail1">
+                                </div>
+                                <p id="errorEmail"></p>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1"
+                                        class="form-label">Password</label>
+                                    <input type="password" class="form-control"
+                                        id="exampleInputPassword1">
+                                </div>
+                                <p id="errorPassword"></p>
+                                <button type="submit" 
+                                    onclick="registerForm(event)"
+                                    class="btn btn-primary">Register</button>
+                            </form>
+                            <p id="successMessage"
+                                class="mt-5 text-success"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal login -->
+            <div class="modal fade" id="loginModal" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5"
+                                id="exampleModalLabel">Login</h1>
+                            <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="inputEmailLogin"
+                                        class="form-label">Email
+                                        address</label>
+                                    <input type="text" class="form-control"
+                                        id="inputEmailLogin">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="inputPasswordLogin"
+                                        class="form-label">Password</label>
+                                    <input type="password" class="form-control"
+                                        id="inputPasswordLogin">
+                                </div>
+
+                                <button type="submit" onclick="loginForm(event)"
+                                    class="btn btn-primary">Login</button>
+                                <p id="successLogin" class="mt-5"></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login register start -->
+
+
+            <!-- List cars -->
+             <p id="welcomeMessage" class="text-success text-end"></p>
+             <div id="controls" class="d-none d-flex gap-3">
+                <div>
+                    <label for="sort" class="form-label">Sort by price:</label>
+                    <select id="sort" class="form-control" onchange="sortByPrice()">
+                        <option value="-" selected disabled>- Choose an option -</option>
+                        <option value="asc">Ascending</option>
+                        <option value="dsc">Descending</option>
+                    </select> 
+                </div>
+                <div>
+                    <label for="searchInput" class="form-label">Enter model or make of the car to filter by:</label>
+                    <input type="text" id="searchInput" oninput="searchInput()" class="form-control" placeholder="Enter model or make of the car" />
+                </div>
+
+                <div>
+                    <label for="featureCars" class="form-label">Filter cars by feature:</label>
+                    <input type="text" id="featureCars" oninput="featureFilter()" class="form-control" placeholder="Filter cars by feature:" />
+                </div>
+             </div>
+            <div id="myCars" style="display: none; overflow-y: scroll; height:600px;" class="row mt-5">
+                
+            </div>
+            <!-- List cars -->
+
+        </div>
+
+    </body>
+
+    <script src="index.js"> </script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </html>
